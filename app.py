@@ -82,7 +82,7 @@ if btn_submit:
             },
         ],
     }
-    with st.spinner('Wait for it...'):
+    with st.spinner('Aguarde...'):
         response = requests.post(
         'https://us-central1-data-test-01-301021.cloudfunctions.net/cog-gpt4',
         headers=headers,
