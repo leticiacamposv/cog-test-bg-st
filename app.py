@@ -8,15 +8,15 @@ import requests
 st.set_page_config(page_title='Cognitive test', page_icon=':eyeglasses:', layout='wide')
 
 # Primary title on page
-st.title('Cognitive test')
+st.title('Cognitive test (GPT-4)')
 
 # Sidebar
-st.sidebar.markdown("Selecione os parâmetros")
-max_length = st.sidebar.number_input('Max length', min_value=1, max_value=2048, value=500, step=1, help='Quantidade máxima de tokens ou "limite de palavras" da resposta. Quanto maior o número de tokens, mais demorada a resposta')
-temperature = st.sidebar.slider('Temperature', min_value=0.00, max_value=1.00, step=0.01, help='Controla a aleatoriedade do texto gerado. Quanto maior a temperatura, mais "criativo" e arriscad será o modelo. ')
-top_p = st.sidebar.slider('Top P', min_value=0.00, max_value=1.00, step=0.01, help='Grau de consideração de inclusão de palavras com probabilidades menores aparecerem no texto. Também controla a criatividade')
-freq_penalty = st.sidebar.slider('Frequency penalty', min_value=0.00, max_value=2.00, step=0.01, help='Grau de penalidade para repetição da mesma palavra em texto')
-best_of = st.sidebar.slider('Best of', min_value=1, max_value=20, step=1, help='Quantidade de respostas diferentes geradas. Use para efeito de variedade na resposta')
+# st.sidebar.markdown("Selecione os parâmetros")
+# max_length = st.sidebar.number_input('Max length', min_value=1, max_value=2048, value=500, step=1, help='Quantidade máxima de tokens ou "limite de palavras" da resposta. Quanto maior o número de tokens, mais demorada a resposta')
+# temperature = st.sidebar.slider('Temperature', min_value=0.00, max_value=1.00, step=0.01, help='Controla a aleatoriedade do texto gerado. Quanto maior a temperatura, mais "criativo" e arriscad será o modelo. ')
+# top_p = st.sidebar.slider('Top P', min_value=0.00, max_value=1.00, step=0.01, help='Grau de consideração de inclusão de palavras com probabilidades menores aparecerem no texto. Também controla a criatividade')
+# freq_penalty = st.sidebar.slider('Frequency penalty', min_value=0.00, max_value=2.00, step=0.01, help='Grau de penalidade para repetição da mesma palavra em texto')
+# best_of = st.sidebar.slider('Best of', min_value=1, max_value=20, step=1, help='Quantidade de respostas diferentes geradas. Use para efeito de variedade na resposta')
 #end = st.sidebar.text_input('Stop sequence')
 #Inject start text
 #prob = st.sidebar.checkbox('Quantidade de tokens mais provaveis a ser :')
@@ -78,7 +78,7 @@ if btn_submit:
         'prompts': [
             {
                 'role': 'user',
-                'content': 'sou a favor do aborto porque se a mãe abortar um filho indesejável ela evita um ser humano depressivo e com muitos problemas psicológicos',
+                'content': prompt,
             },
         ],
     }
@@ -86,8 +86,7 @@ if btn_submit:
     response = requests.post(
     'https://us-central1-data-test-01-301021.cloudfunctions.net/cog-gpt4',
     headers=headers,
-    json=json_data,
-    timeout=70)
+    json=json_data)
     
     answer = ':computer: ' + str(response.content, 'utf-8').text.strip().replace('Answer:', '')
   
