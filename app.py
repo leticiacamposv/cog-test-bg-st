@@ -82,11 +82,11 @@ if btn_submit:
             },
         ],
     }
-    
-    response = requests.post(
-    'https://us-central1-data-test-01-301021.cloudfunctions.net/cog-gpt4',
-    headers=headers,
-    json=json_data)
+    with st.spinner('Wait for it...'):
+        response = requests.post(
+        'https://us-central1-data-test-01-301021.cloudfunctions.net/cog-gpt4',
+        headers=headers,
+        json=json_data)
     
     answer = ':computer: ' + str(response.content, 'utf-8')
   
