@@ -88,7 +88,7 @@ if btn_submit:
     headers=headers,
     json=json_data)
     
-    answer = ':computer: ' + str(response.content, 'utf-8').text.strip().replace('Answer:', '')
+    answer = ':computer: ' + str(response.content, 'utf-8')
   
 
     st.write(answer)
